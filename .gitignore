@@ -1,0 +1,12 @@
+# Server data (world, logs, configs) and mods
+/minecraft/
+/mods/
+
+# Players' IP addresses are personal data
+/allowed-ips.txt
+
+# Backups
+/backups/
+
+# Local configuration (copy of .env.example)
+/.env

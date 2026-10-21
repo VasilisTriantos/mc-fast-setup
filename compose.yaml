@@ -1,0 +1,39 @@
+name: minecraft
+services:
+  minecraft:
+    image: itzg/minecraft-server:${JAVA_TAG:-java17}
+    container_name: minecraft
+    network_mode: host
+    restart: "no"
+    stdin_open: true
+    tty: true
+    stop_grace_period: 120s
+    environment:
+      EULA: ${EULA:-FALSE}
+      TYPE: ${MOD_LOADER:-FORGE}
+      VERSION: ${MC_VERSION:-1.20.1}
+      FORGE_VERSION: ${FORGE_VERSION:-47.3.0}
+      MEMORY: ${MEMORY:-4G}
+      UID: ${MC_UID:-1000}
+      GID: ${MC_GID:-1000}
+      SERVER_PORT: ${PORT:?set PORT in .env}
+      ENABLE_RCON: "false"
+      ENABLE_QUERY: "false"
+      CREATE_CONSOLE_IN_PIPE: "true"
+      ONLINE_MODE: ${ONLINE_MODE:-TRUE}
+      STOP_DURATION: "110"
+      MOTD: "Modded Minecraft"
+    healthcheck:
+      test: mc-health
+      start_period: 5m
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    volumes:
+      - ./minecraft:/data
+      - ./mods:/data/mods
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"

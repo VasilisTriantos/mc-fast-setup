@@ -1,0 +1,6 @@
+# One IPv4 or IPv6 address per line. No hostnames or CIDR ranges.
+# Everything after # or // is a comment, e.g.:  203.0.113.7  # Steve
+# Add your LAN address for LAN play, or your friends' public addresses for internet play.
+# Empty list blocks all remote players. Localhost remains accessible.
+# 192.168.1.42
+# 2001:db8::42
